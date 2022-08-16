@@ -30,21 +30,26 @@ void sieve(){
 
 void solve(){
     string s;
-    cin >> s;
-    string x;
+    getline(cin,s);
+    s = ' '+s;
     string ans = "@ptit.edu.vn";
-    string subs ="";
-    if (s[0] <= 'Z') s[0] += 32;
-    subs+=s[0];
-    cin >> s;
-    if (s[0] <= 'Z') s[0] += 32;
-    subs+=s[0];
-    ans = subs+ans;
-    cin >> s;
-    for (int i=0;i<s.length();i++){
-        if (s[i] <= 'Z') s[i]+=32;
+    string x;
+    int id = s.length()-1;
+    while (s[id] != ' '){
+        if (s[id] <= 'Z') s[id] += 32;
+        x = s[id] + x;
+        id--;
     }
-    ans = s+ans;
+    id--;
+    while (id >=0){
+        if (s[id] == ' '){
+             ans = s[id+1] + ans;
+        }else{
+            if (s[id] <= 'Z') s[id] += 32;
+        }
+        id--;
+    }
+    ans = x + ans;
     cout << ans;
 }
 
